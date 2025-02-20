@@ -1,0 +1,222 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap');
+
+body {
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+body.light-theme {
+  background-color: #f0f0f0;
+  background-image: linear-gradient(to bottom, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0) 100%), url('https://www.toptal.com/designers/subtlepatterns/uploads/swirl_pattern.png');
+  background-repeat: repeat;
+  color: #333;
+}
+
+body.dark-theme {
+  background-color: #222;
+  background-image: none;
+  color: #f0f0f0;
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  flex: 1;
+  padding: 2rem;
+  border-radius: 15px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  margin: 20px;
+  transition: background-color 0.3s ease;
+}
+
+.light-theme main {
+  background-color: rgba(255, 255, 255, 0.9);
+}
+
+.dark-theme main {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+h1, h2, h3 {
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.light-theme h1, .light-theme h2, .light-theme h3 {
+  color: #ff4757;
+}
+
+.dark-theme h1, .dark-theme h2, .dark-theme h3 {
+  color: #ff6b6b;
+}
+
+/* Rich styling for all pages */
+.page-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.section {
+  margin-bottom: 40px;
+  padding: 30px;
+  background-color: white;
+  border-radius: 15px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.section:hover {
+  transform: translateY(-5px);
+}
+
+/* Contact and Auth page styles */
+.contact-container, .auth-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 30px;
+  background-color: white;
+  border-radius: 15px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.contact-content {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 30px;
+}
+
+.contact-form, .auth-form {
+  width: 60%;
+}
+
+.contact-info {
+  width: 35%;
+  background-color: #f8f8f8;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.form-group {
+  margin-bottom: 25px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+  color: #ff6b6b;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 16px;
+  transition: border-color 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: #ff6b6b;
+  outline: none;
+}
+
+.form-group textarea {
+  height: 150px;
+  resize: vertical;
+}
+
+.submit-btn, button {
+  background-color: #ff6b6b;
+  color: white;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.submit-btn:hover, button:hover {
+  background-color: #ff4757;
+  transform: translateY(-2px);
+}
+
+.switch-btn {
+  background: none;
+  border: none;
+  color: #ff6b6b;
+  cursor: pointer;
+  font-size: 16px;
+  text-decoration: underline;
+  padding: 0;
+}
+
+/* Image container styles */
+.image-container {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  margin-top: 30px;
+}
+
+.image-container img {
+  width: 300px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 15px;
+  margin-bottom: 30px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.image-container img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+@media (max-width: 768px) {
+  .contact-content {
+    flex-direction: column;
+  }
+  
+  .contact-form,
+  .contact-info,
+  .auth-form {
+    width: 100%;
+  }
+  
+  .contact-info {
+    margin-top: 30px;
+  }
+}
+
+.dark-theme .section {
+  background-color: #333;
+  box-shadow: 0 5px 15px rgba(255, 255, 255, 0.1);
+}
+
+.dark-theme .contact-container, .dark-theme .auth-container {
+  background-color: #333;
+}
+
+.dark-theme .contact-info {
+  background-color: #444;
+}
+
+.dark-theme .form-group input,
+.dark-theme .form-group textarea {
+  background-color: #444;
+  color: #f0f0f0;
+  border-color: #555;
+}
