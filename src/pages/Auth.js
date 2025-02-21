@@ -8,6 +8,13 @@ function Auth() {
     password: '',
     confirmPassword: ''
   });
+  const[loginResponse, setLoginResponse] = useState({
+    userId: '',
+    tenantId: '',
+    userName: '',
+    isLoggedIn: false 
+  });
+  const[sharePointUrl, setSharePointUrl] = useState('');
   const { instance } = useMsal();
 
   const handleChange = (e) => {
@@ -24,10 +31,15 @@ function Auth() {
     // Implement Microsoft login logic here
     console.log('Login with Microsoft');
     const response = await instance.loginPopup({
-      scopes: ['user.read'],
-      redirectUri: 'http://localhost:3000/auth/callback'
+      scopes: ["User.Read", "Sites.Read.All", "Files.Read.All"]
     });
     console.log(response);
+    setLoginResponse({
+      userId: response.account.idTokenClaims.oid,
+      tenantId: response.account.tenantId,
+      userName: response.account.name,
+      isLoggedIn: true
+    });
 
     const tenantId = response.account.tenantId;
     const userId = response.account.idTokenClaims.oid;
@@ -46,10 +58,20 @@ function Auth() {
     });
     const data = await response.json();
     console.log(data);
+    setSharePointUrl(data.webUrl);
   };
 
   return (
     <div className="auth-container">
+      {loginResponse.isLoggedIn ? (
+        <div>
+          <h1>Hello, {loginResponse.userName}!</h1>
+          <p>Your tenant ID is {loginResponse.tenantId}</p>
+          <p>Your user ID is {loginResponse.userId}</p>
+          <p>Your onedrive url is:<br /> {sharePointUrl}</p>
+        </div>
+      ) : (
+        <>
       <h1>{isLogin ? 'Login' : 'Sign Up'}</h1>
       <form onSubmit={handleSubmit} className="auth-form">
         <div className="form-group">
@@ -96,6 +118,8 @@ function Auth() {
         </button>
       </p>
       <button onClick={handleLogin}>Login with Microsoft</button>
+      </>
+      )}
     </div>
   );
 }
